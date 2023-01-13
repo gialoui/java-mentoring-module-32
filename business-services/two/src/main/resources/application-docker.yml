@@ -1,0 +1,10 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: two-service
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka
