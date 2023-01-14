@@ -16,39 +16,43 @@ services:
     hostname: discovery_server
     build: ./platform-services/discovery
     container_name: discovery_server
-    restart: always
+    restart: on-failure
+    expose:
+      - "8761"
     ports:
       - "8761:8761"
 
   apigateway:
     build: ./platform-services/apigateway
     container_name: api_gateway
-    restart: always
+    restart: on-failure
+    expose:
+      - "8762"
     ports:
       - "8762:8762"
     depends_on:
       - discovery
+      - one
+      - two
 
   one:
     build: ./business-services/one
     container_name: one_app
-    restart: always
+    restart: on-failure
     expose:
       - "8082"
     ports:
       - "8082:8082"
     depends_on:
-      - apigateway
       - discovery
 
   two:
     build: ./business-services/two
     container_name: two_app
-    restart: always
+    restart: on-failure
     expose:
       - "8083"
     ports:
       - "8083:8083"
     depends_on:
-      - apigateway
       - discovery
