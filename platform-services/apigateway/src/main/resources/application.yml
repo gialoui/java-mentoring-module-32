@@ -8,6 +8,9 @@ spring:
     name: gateway
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
       routes:
         - id: one-service
           uri: lb://one-service
@@ -21,5 +24,6 @@ spring:
 eureka:
   client:
     registerWithEureka: true
+    fetch-registry: true
     serviceUrl:
-      defaultZone: http://discovery:8761/eureka
+      defaultZone: http://localhost:8761/eureka

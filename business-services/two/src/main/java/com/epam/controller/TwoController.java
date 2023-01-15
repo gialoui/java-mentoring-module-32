@@ -14,13 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/two")
 @Slf4j
 public class TwoController {
-
     @Autowired
     private OneServiceClient oneServiceClient;
 
+    @GetMapping("/health-check")
+    String healthCheck() {
+        return "I'm good";
+    }
+
     @GetMapping
     String test() {
-        log.info("Result from another service: {}", oneServiceClient.test());
+        log.info("Result from another service: {}", oneServiceClient.healthCheck());
         return "Two App";
     }
 }

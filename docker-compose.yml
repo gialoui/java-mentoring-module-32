@@ -1,16 +1,14 @@
 version: "3.8"
 services:
-  #  zipkin:
-  #    image: openzipkin/zipkin
-  #    ports:
-  #      - "9411:9411"
-  #    networks:
-  #      - discovery-network
-  #
-  #  graphite:
-  #    image: graphiteapp/graphite-statsd
-  #    ports:
-  #      - "2003:2003"
+  zipkin:
+    hostname: zipkin_server
+    container_name: zipkin_server
+    restart: on-failure
+    image: openzipkin/zipkin
+    expose:
+      - "9411"
+    ports:
+      - "9411:9411"
 
   discovery:
     hostname: discovery_server

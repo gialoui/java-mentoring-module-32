@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 /**
  * @author khangndd
  */
-@FeignClient(name = "two-service")
+@FeignClient(name = "twoServiceClient", url = "${api.host}/two")
 public interface TwoServiceClient {
-    @GetMapping("/two")
-    String test();
+    @GetMapping("/health-check")
+    String healthCheck();
 }

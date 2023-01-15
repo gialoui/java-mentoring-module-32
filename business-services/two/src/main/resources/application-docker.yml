@@ -1,9 +1,18 @@
 server:
   port: 8083
 
+api:
+  host: http://apigateway:8762
+
 spring:
+  zipkin:
+    enabled: true
+    baseUrl: http://zipkin:9411/
   application:
     name: two-service
+  sleuth:
+    sampler:
+      probability: 1
 eureka:
   client:
     serviceUrl:
